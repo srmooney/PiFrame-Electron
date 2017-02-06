@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Gallery</title>
+        <style>
+          html, body, #canvas { width: 100%; height: 100%; margin: 0; padding: 0; }
+          #canvas { background: #000; overflow: hidden; }
+          img { display: none; max-width: 100%; width: auto; max-height: 100%; height: auto; position: absolute; z-index: 1; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        </style>
+    </head>
+    <body>
+      <div id="canvas">
+        <!--<a href="/version">Version</a>-->
+        <img id="primary" src="#" />
+        <img id="secondary" src="#" />
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+            $(function(){
+              var primary = $('#primary');
+              var secondary = $('#secondary').hide();
+              var index = 0;
+              var images = [
+                'http://lorempixel.com/1080/720?1',
+                'http://lorempixel.com/1080/720?2',
+                'http://lorempixel.com/1080/720?3',
+                'http://lorempixel.com/720/1080?4',
+                'http://lorempixel.com/1080/720?5',
+                'http://lorempixel.com/1080/720?6'
+              ];
+
+              primary.attr('src', images[0]).show();
+              secondary.attr('src', images[1]).show().css({left: '300vw'});
+
+              function showNext(){
+                index = (++index > images.length-1) ? 0 : index;
+                var next = (index + 1 > images.length-1) ? 0 : index + 1;
+                console.log(index, next);
+                if (index % 2 === 0){
+                  /*
+                  primary.fadeOut(function(){
+                    primary.attr('src', images[next]);
+                    secondary.fadeIn();
+                  });
+                  */
+                  primary.animate({left: '-300vw'}, 'slow', function(){
+                    primary.attr('src', images[next]).css({left: '300vh'},'slow');
+                    secondary.animate({left: ''});
+                  });
+                } else {
+                  /*
+                  secondary.fadeOut(function(){
+                    secondary.attr('src', images[next]);
+                    primary.fadeIn();
+                  });
+                  */
+                  secondary.animate({left: '-300vw'},'slow', function(){
+                    secondary.attr('src', images[next]).css({left: '300vh'},'slow');
+                    primary.animate({left: ''});
+                  });
+                }
+              }
+
+              window.setInterval(function(){
+                //showNext();
+              }, 2000);
+            });
+      </script>
+    </body>
+</html>

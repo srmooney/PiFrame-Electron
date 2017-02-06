@@ -1,0 +1,17 @@
+{
+  "name": "PiFrame",
+  "version": "0.1.0",
+  "description": "",
+  "main": "js/electron.js",
+  "scripts": {
+    "start": "electron js/electron.js"
+  },
+  "author": "Sean Mooney",
+  "license": "ISC",  
+  "dependencies": {
+    "electron": "^1.4.15",
+    "express": "^4.14.1",
+    "socket.io": "^1.7.2",
+    "helmet": "^3.4.0"
+  }
+}
